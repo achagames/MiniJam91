@@ -8,7 +8,9 @@ public class LightBeamController : MonoBehaviour
     public Transform beamPos;
     public float beamSpeed = 10f;
     public float beamReturnSpeed = 10f;
+    public Transform cam;
 
+    Vector3 camOriginalPos;
     bool isAscending;
     bool beamIsSpawned;
     Transform lightBeam;
@@ -16,7 +18,7 @@ public class LightBeamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        camOriginalPos = cam.transform.position;
     }
 
     // Update is called once per frame
@@ -70,8 +72,14 @@ public class LightBeamController : MonoBehaviour
         {
             isAscending = true;
             lightBeam.localScale = new Vector3(1, lightBeam.localScale.y - Time.deltaTime * beamReturnSpeed, 1);
+
+            if (cam.position.y != camOriginalPos.y)
+            {
+                cam.position = Vector3.MoveTowards(cam.position, new Vector3(cam.position.x, camOriginalPos.y, cam.position.z), Time.deltaTime * (beamReturnSpeed + 2));
+                //cam.transform.position += Vector3.up * Time.deltaTime * (beamReturnSpeed);
+            }
+            
         }
-        
     }
 
     public void DescendLightBeam()
@@ -80,6 +88,7 @@ public class LightBeamController : MonoBehaviour
         {
             isAscending = false;
             lightBeam.localScale = new Vector3(1, lightBeam.localScale.y + Time.deltaTime * beamSpeed, 1);
+            cam.position -= Vector3.up * Time.deltaTime * beamSpeed;
         }
         
     }

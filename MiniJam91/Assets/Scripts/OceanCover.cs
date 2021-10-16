@@ -10,7 +10,7 @@ public class OceanCover : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-        cover.position = new Vector3(cover.position.x, cover.position.y, -0.2f);
+        cover.position = new Vector3(cover.position.x, cover.position.y, -2f);
 
         }
     }
@@ -21,7 +21,7 @@ public class OceanCover : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             
-            cover.position = new Vector3(cover.position.x, cover.position.y, 2);
+            cover.position = new Vector3(cover.position.x, cover.position.y, 2f);
 
         }
     }
