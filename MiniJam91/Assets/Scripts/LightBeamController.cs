@@ -7,7 +7,8 @@ public class LightBeamController : MonoBehaviour
     public Transform beamPrefab;
     public Transform beamPos;
     public float beamSpeed = 10f;
-    
+    public float beamReturnSpeed = 10f;
+
     bool beamIsSpawned;
     Transform lightBeam;
 
@@ -36,7 +37,7 @@ public class LightBeamController : MonoBehaviour
         }
         else if(beamIsSpawned && GetComponentInChildren<LightBeam>().GetCaughtFish() && lightBeam.localScale.y > 0.2f)
         {
-            lightBeam.localScale = new Vector3(1, lightBeam.localScale.y - Time.deltaTime * beamSpeed, 1);
+            lightBeam.localScale = new Vector3(1, lightBeam.localScale.y - Time.deltaTime * beamReturnSpeed, 1);
         }
 
         if (beamIsSpawned && GetComponentInChildren<LightBeam>().GetCaughtFish() && lightBeam.localScale.y <= 0.2f)

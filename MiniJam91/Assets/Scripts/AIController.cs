@@ -53,4 +53,8 @@ public class AIController : MonoBehaviour
         transform.localScale = theScale;
       
     }
+    public void StopSwimming()
+    {
+        swimmingSpeed = 0f;
+    }
 }

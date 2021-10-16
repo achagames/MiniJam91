@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightBeam : MonoBehaviour
 {
+    public float fishFlyingSpeed = 3.5f;
+
     bool caughtFish = false;
     Transform parent;
     Transform fish;
@@ -16,9 +18,8 @@ public class LightBeam : MonoBehaviour
     {
         if (caughtFish)
         {
-            fish.position = Vector3.MoveTowards(fish.position, parent.position, 3.5f * Time.deltaTime);
-            print(transform.localScale.y);
-            
+            fish.position = Vector3.MoveTowards(fish.position, parent.position, fishFlyingSpeed * Time.deltaTime);
+            fish.GetComponent<AIController>().StopSwimming();
         }
 
         
@@ -30,7 +31,7 @@ public class LightBeam : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("fish"))
+        if (!caughtFish && collision.gameObject.CompareTag("fish"))
         {
              caughtFish = true;
             fish = collision.gameObject.GetComponent<Transform>();
