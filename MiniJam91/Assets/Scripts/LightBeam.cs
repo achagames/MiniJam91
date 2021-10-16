@@ -38,11 +38,21 @@ public class LightBeam : MonoBehaviour
             print("Touched" + collision.gameObject.tag);
             
         }
+
+        //if (!caughtFish && collision.gameObject.CompareTag("surface"))
+        //{
+        //    Transform cover = collision.gameObject.transform;
+        //    cover.position = new Vector3(cover.position.x,cover.position.y,1);
+        //}
     }
 
     public void DespawnBeam()
     {
             Destroy(parent.gameObject);
+        if (fish != null)
+        {
             Destroy(fish.gameObject);
+        }
+           
     }
 }
