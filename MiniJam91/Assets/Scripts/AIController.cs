@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-
+    public FishEnum type;
     public float swimmingSpeed = 10f;
     public Transform[] swimPoints;
 

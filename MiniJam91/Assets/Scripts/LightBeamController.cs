@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UI;
 
 public class LightBeamController : MonoBehaviour
 {
+    public Text[] fishObjectives;
     public Transform beamPrefab;
     public Transform beamPos;
     public float beamSpeed = 10f;
     public float beamReturnSpeed = 10f;
+    public float lightsSpeed = 2.3f;
+    public float lightsReturnSpeed = 6f;
+    public float beamMaxDepth = 20f;
     public Transform cam;
     public Light2D lighting;
 
@@ -41,9 +46,33 @@ public class LightBeamController : MonoBehaviour
         }
         if (lightBeam != null)
         {
-            if (beamIsSpawned && GetComponentInChildren<LightBeam>().GetCaughtFish())
+            if (beamIsSpawned && GetComponentInChildren<LightBeam>().GetHasCaughtFish())
             {
                 isAscending = true;
+
+                switch (GetComponentInChildren<LightBeam>().GetFish())
+                {
+                    case FishEnum.SWORDFISH:
+                        fishObjectives[0].color = Color.yellow;
+                        break;
+                    case FishEnum.INCOGNITO_FISH:
+                        fishObjectives[1].color = Color.yellow;
+                        break;
+                    case FishEnum.GLOWING_FISH:
+                        fishObjectives[2].color = Color.yellow;
+                        break;
+                    case FishEnum.CLOWNFISH:
+                        fishObjectives[3].color = Color.yellow;
+                        break;
+                    case FishEnum.GOLDFISH:
+                        fishObjectives[4].color = Color.yellow;
+                        break;
+                    case FishEnum.JELLYFISH:
+                        fishObjectives[5].color = Color.yellow;
+                        break;
+                    default:
+                        break;
+                }
             }
         
         
@@ -84,7 +113,7 @@ public class LightBeamController : MonoBehaviour
             }
             if (lighting.pointLightOuterRadius > originalLightRadius)
             {
-                lighting.pointLightOuterRadius -= Time.deltaTime * 4f;
+                lighting.pointLightOuterRadius -= Time.deltaTime * lightsReturnSpeed;
             }
             
         }
@@ -92,12 +121,12 @@ public class LightBeamController : MonoBehaviour
 
     public void DescendLightBeam()
     {
-        if (beamIsSpawned)
+        if (beamIsSpawned && lightBeam.localScale.y < beamMaxDepth)
         {
             isAscending = false;
             lightBeam.localScale = new Vector3(1, lightBeam.localScale.y + Time.deltaTime * beamSpeed, 1);
             cam.position -= Vector3.up * Time.deltaTime * beamSpeed;
-            lighting.pointLightOuterRadius += Time.deltaTime * 1.5f;
+            lighting.pointLightOuterRadius += Time.deltaTime * lightsSpeed;
         }
         
     }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LightBeam : MonoBehaviour
 {
+
     public float fishFlyingSpeed = 3.5f;
 
-    bool caughtFish = false;
+    bool hasCaughtFish = false;
     Transform parent;
     Transform fish;
 
@@ -16,7 +18,7 @@ public class LightBeam : MonoBehaviour
     }
     private void Update()
     {
-        if (caughtFish)
+        if (hasCaughtFish)
         {
             fish.position = Vector3.MoveTowards(fish.position, parent.position, fishFlyingSpeed * Time.deltaTime);
             fish.GetComponent<AIController>().StopSwimming();
@@ -24,18 +26,22 @@ public class LightBeam : MonoBehaviour
 
         
     }
-    public bool GetCaughtFish()
+    public bool GetHasCaughtFish()
     {
-        return caughtFish;
+        return hasCaughtFish;
+    }
+    public FishEnum GetFish()
+    {
+        return fish.GetComponent<AIController>().type;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (!caughtFish && collision.gameObject.CompareTag("fish"))
+        if (!hasCaughtFish && collision.gameObject.CompareTag("fish"))
         {
-             caughtFish = true;
+             hasCaughtFish = true;
             fish = collision.gameObject.GetComponent<Transform>();
-            print("Touched" + collision.gameObject.tag);
+            
             
         }
 
