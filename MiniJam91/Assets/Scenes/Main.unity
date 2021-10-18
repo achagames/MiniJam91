@@ -2686,6 +2686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4724342327774640774, guid: fd10c9376ecf78c4fa63f3c7ea9818c6, type: 3}
+      propertyPath: movementSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4724342327774640775, guid: fd10c9376ecf78c4fa63f3c7ea9818c6, type: 3}
       propertyPath: beamSpeed
       value: 1.1
@@ -2770,6 +2774,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 4724342329302957338, guid: fd10c9376ecf78c4fa63f3c7ea9818c6, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724342329302957338, guid: fd10c9376ecf78c4fa63f3c7ea9818c6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e830c08cb034b4f4cbd8d508348c5ca3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd10c9376ecf78c4fa63f3c7ea9818c6, type: 3}
 --- !u!64 &9119888467176286884
