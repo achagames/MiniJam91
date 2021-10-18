@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9bd992e75b35e48abd9dbcc1cdd798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimmingSpeed: 5
+  type: 0
+  swimmingSpeed: 12
   swimPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -77,8 +78,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5500093, y: 0.40571237, z: 1}
-  m_Center: {x: 0.22803164, y: 0.065228105, z: 0}
+  m_Size: {x: 3.2302346, y: 0.73626685, z: 1}
+  m_Center: {x: 0.42509532, y: 0.14008796, z: 0}
 --- !u!1 &6662547516737501313
 GameObject:
   m_ObjectHideFlags: 0

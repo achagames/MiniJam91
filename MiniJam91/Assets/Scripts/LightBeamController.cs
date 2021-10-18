@@ -22,12 +22,14 @@ public class LightBeamController : MonoBehaviour
     bool isAscending;
     bool beamIsSpawned;
     Transform lightBeam;
+    PlayerMovement playerMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         camOriginalPos = cam.transform.position;
         originalLightRadius = lighting.pointLightOuterRadius;
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -44,10 +46,17 @@ public class LightBeamController : MonoBehaviour
 
 
         }
+
+        if (!beamIsSpawned && lighting.pointLightOuterRadius > originalLightRadius)
+        {
+            
+                lighting.pointLightOuterRadius -= Time.deltaTime * lightsReturnSpeed;
+        }
         if (lightBeam != null)
         {
             if (beamIsSpawned && GetComponentInChildren<LightBeam>().GetHasCaughtFish())
             {
+                playerMovement.enabled = false;
                 isAscending = true;
 
                 switch (GetComponentInChildren<LightBeam>().GetFish())
@@ -97,6 +106,7 @@ public class LightBeamController : MonoBehaviour
         lightBeam.GetComponent<LightBeam>().DespawnBeam();
         beamIsSpawned = false;
         isAscending = false;
+        playerMovement.enabled = true;
     }
 
     public void AscendLightBeam()

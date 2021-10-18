@@ -48,9 +48,13 @@ public class AIController : MonoBehaviour
 
     void Flip()
     {
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        if (type != FishEnum.JELLYFISH)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+        
       
     }
     public void StopSwimming()

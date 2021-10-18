@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 6
-  swimmingSpeed: 5
+  swimmingSpeed: 2.5
   swimPoints:
   - {fileID: 0}
   - {fileID: 0}
